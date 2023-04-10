@@ -1,4 +1,5 @@
 const User = require("../models/auth.js");
+
 const db = require("../database/db");
 exports.getUser = async (req, res) => {
     try {
@@ -33,3 +34,4 @@ exports.login = async (req, res) => {
         });
     }
 };
+

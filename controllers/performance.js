@@ -2,7 +2,9 @@ const Performance = require("../models/performance.js");
 const {
     Category
 } = require("../models/category");
+
 const app = Performance;
+
 exports.listPerformance = async (req, res) => {
     try {
         const performance = await Performance.findAll({
@@ -78,6 +80,7 @@ exports.getPerformanceCategoryId = async (req, res) => {
 
 exports.postPerformance = async (req, res) => {
     try {
+
         console.log("postPerformance API: ");
         data = req.body;
         const performance = await Performance.create({
@@ -89,11 +92,14 @@ exports.postPerformance = async (req, res) => {
             performance_size: data.size,
             category_id: parseInt(data.category)
         }, {
+
             attributes: {
                 exclude: ['id', 'createdAt', 'updatedAt']
             }
         });
         res.json(performance);
+
+
     } catch (error) {
         console.log(error);
         res.status(500).send("==Server Error PostPerformance==");
@@ -103,8 +109,10 @@ exports.postPerformance = async (req, res) => {
 exports.putPerformance = async (req, res) => {
     try {
         const performance_id = req.params.id
+
         console.log("req.body", req.body);
         console.log("req.params", req.params);
+
         const performance = await Performance.findByPk(performance_id, {
             attributes: {
                 exclude: ['id', 'createdAt', 'updatedAt']
